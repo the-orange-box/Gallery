@@ -18,6 +18,7 @@
     "babel-loader": "^8.0.6",
     "faker": "^4.1.0",
     "mocha": "^6.2.1",
+    "nodemon": "^1.19.3",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   },
@@ -25,7 +26,8 @@
     "test": "mocha",
     "build": "webpack -p",
     "watch": "webpack --watch",
-    "server": "node ./server/index.js"
+    "server": "nodemon ./server/index.js",
+    "seed-database": "node ./server/database/seed-database.js"
   },
   "keywords": [],
   "author": "",
