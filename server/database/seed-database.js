@@ -1,16 +1,24 @@
 const db = require('./index.js');
-var faker = require('faker');
+const faker = require('faker');
+const Promise = require('bluebird');
 
 var seedDatabase = function (amount) {
-  var imageData = generateRandomImage();
-  // var image = new db.galleryModel(imageData);
-  // console.log(imageData);
-  amount
-  db.galleryModel.findOneAndUpdate({ placeID: imageData.placeID }, imageData, { new: true, upsert: true }, (err, result) => {
+  let imageData;
+  var promises = [];
+
+  for ( var i = 0; i < amount; i++) {
+    imageData = generateRandomImage();
+    promises.push(db.galleryModel.findOneAndUpdate({ placeID: imageData.placeID }, imageData, { new: true, upsert: true }, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log('image inserted');
+      }
+    }));
+  }
+  Promise.all(promises).then((err, result)=>{
     if (err) {
       console.log(err);
-    } else {
-      console.log(result);
     }
     db.database.close(() => {
       console.log('connection closed');
@@ -31,4 +39,4 @@ var generateRandomImage = function () {
   };
 };
 
-seedDatabase();
+seedDatabase(100);
