@@ -24,9 +24,9 @@ class Carousel extends React.Component {
     return (
       <div className="carousel-container">
         {xbutton}
-        <div>
+        <div className="main-image-container">
           {leftArrow}
-          big image
+          <div className='main-image'><img src={this.props.imagelist[this.state.currentImage].image}></img></div>
           {rightArrow}
         </div>
         <div className='mini-gallery'>

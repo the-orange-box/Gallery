@@ -12,12 +12,25 @@
   right: 10px;
 }
 
+.main-image-container {
+  width: 50%;
+}
+
+.main-image {
+  display: inline-block;
+}
+
+.main-image img {
+  width: 100%;
+  height: auto;
+}
+
 .mini-gallery .carousel-item{
-  width: 200px;
-  height: 100px;
+  display: inline-block;
+  width: 100px;
 }
 
 .mini-gallery .carousel-item img{
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
 }
