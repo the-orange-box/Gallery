@@ -7,12 +7,13 @@ var seedDatabase = function (amount) {
   var promises = [];
 
   for ( var i = 0; i < amount; i++) {
-    imageData = generateRandomImage();
-    promises.push(db.galleryModel.findOneAndUpdate({ placeID: imageData.placeID }, imageData, { new: true, upsert: true }, (err, result) => {
+    imageData = generateRandomImage(i % 2);
+    //placeID: imageData.placeID, 
+    promises.push(db.galleryModel.findOneAndUpdate({image: imageData.image}, imageData, { new: true, upsert: true }, (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        // console.log('image inserted');
+        console.log('image inserted');
       }
     }));
   }
@@ -26,11 +27,12 @@ var seedDatabase = function (amount) {
   });
 };
 
-var generateRandomImage = function () {
-  var randomImageURL = faker.image.imageUrl();
+var generateRandomImage = function (id) {
+  var randomImageURL = faker.image.image();
   var randomBoolean = faker.random.boolean();
-  var randomID = faker.random.number();
+  var randomID = id;//faker.random.number();
   var randomText = faker.lorem.sentences();
+
   return {
     placeID: randomID,
     image: randomImageURL,

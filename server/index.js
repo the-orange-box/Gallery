@@ -6,6 +6,7 @@ const port = 3000;
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 app.get('/gallery', imageController.getImages);
+app.get('/gallery/:placeid', imageController.getImage);
 
 app.listen(port, ()=>{
   console.log('listening on port: ' + port);

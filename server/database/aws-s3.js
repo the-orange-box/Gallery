@@ -30,10 +30,14 @@ s3.listObjects(params, function (err, data) {
       Key: data.Contents[0].Key, // your bucket name,
       // Key: 'abc.txt' // path to the object you're looking for
     }
+
+    var url = 'https://hrsf123-airbnb-clone.s3-us-west-1.amazonaws.com/';
+
+    data.Contents.forEach((item)=>{
+      console.log(url + item.Key);
+    })
     
-    //  console.log(data.Contents);           // successful response
     s3.getObject(getParams, (err, dataresult) => {
-      // console.log('here');
       if (err) {
         console.log(err);
       } else {

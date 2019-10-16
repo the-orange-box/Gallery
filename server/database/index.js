@@ -10,7 +10,7 @@ db.once('open', function(){
 var gallerySchema = new mongoose.Schema({
   placeID: Number,
   image: String,
-  caption: {type: String, unique: true},
+  caption: String,
   verified: Boolean
 });
 
