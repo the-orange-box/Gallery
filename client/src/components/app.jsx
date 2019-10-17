@@ -10,7 +10,8 @@ class App extends React.Component {
 
     this.state = {
       imagelist: [],
-      carousel: false
+      carousel: false,
+      clickedImage: 0
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -18,25 +19,31 @@ class App extends React.Component {
 
   componentDidMount() {
     let pathname = window.location.pathname;
-    console.log(`http://localhost:3000/gallery${pathname}`);
     axios.get(`http://localhost:3000/gallery${pathname}`).then((response)=>{
       console.log(response.data);
       this.setState({
         imagelist: response.data
       });
+    }).catch((err)=>{
+      console.log(err);
     });
   }
 
-  handleClick() {
+  handleClick(event) {
+    let link = event.target.src;
+    let currentImage = this.state.imagelist.findIndex((image)=>{
+      return image.image === link;
+    });
     this.setState({
-      carousel: !this.state.carousel
+      carousel: !this.state.carousel,
+      currentImage
     });
   }
 
   render() {
     return (
       <div>
-        {this.state.carousel ? <Carousel handleClick={this.handleClick} imagelist={this.state.imagelist}/> : null}
+        {this.state.carousel ? <Carousel currentImage={this.state.currentImage} handleClick={this.handleClick} imagelist={this.state.imagelist}/> : null}
         <Gallery handleClick={this.handleClick} imagelist={this.state.imagelist}/>
       </div>
     )

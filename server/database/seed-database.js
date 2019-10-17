@@ -8,13 +8,14 @@ var seedDatabase = function (urls) {
   var promises = [];
 
   for ( var i = 0; i < urls.length; i++) {
+    // generate random image objects from input url array and listing ids
     imageData = generateRandomImage(i % 2, urls[i]);
-    //placeID: imageData.placeID, 
+    // find and update image objects based on image link url; todo: update search criteria
     promises.push(db.galleryModel.findOneAndUpdate({image: imageData.image}, imageData, { new: true, upsert: true }, (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        console.log('image insertFed');
+        console.log('image inserted');
       }
     }));
   }
@@ -31,7 +32,7 @@ var seedDatabase = function (urls) {
 var generateRandomImage = function (id, url) {
   var randomImageURL = url;
   var randomBoolean = faker.random.boolean();
-  var randomID = id;//faker.random.number();
+  var randomID = id;
   var randomText = faker.lorem.sentences();
 
   return {
@@ -42,24 +43,19 @@ var generateRandomImage = function (id, url) {
   };
 };
 
-bucketname = "hrsf123-airbnb-clone";
+const bucketname = "hrsf123-airbnb-clone";
+const bucketregion = "s3-us-west-1";
 
-var params = {
+let listObjectsParams = {
   Bucket: bucketname
   // MaxKeys: 2
 };
 
-s3.listObjects(params, function (err, data) {
+s3.listObjects(listObjectsParams, function (err, data) {
   if (err) {
-    console.log(err, err.stack); // an error occurred
+    console.log(err, err.stack);
   } else {
-    var getParams = {
-      Bucket: bucketname,
-      Key: data.Contents[0].Key, // your bucket name,
-      // Key: 'abc.txt' // path to the object you're looking for
-    }
-
-    var url = 'https://hrsf123-airbnb-clone.s3-us-west-1.amazonaws.com/';
+    var url = `https://${bucketname}.${bucketregion}.amazonaws.com/`;
     var resultarr = [];
     data.Contents.forEach((item)=>{
       resultarr.push(url + item.Key);

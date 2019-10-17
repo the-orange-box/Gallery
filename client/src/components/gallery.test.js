@@ -4,7 +4,7 @@ import Gallery from './gallery.jsx';
 
 describe('Gallery Component', () => {
   it('should render correctly in "debug" mode', () => {
-    const component = shallow(<Gallery debug />);
+    const component = shallow(<Gallery handleClick={()=>{}} imagelist={[]} debug/>);
   
     expect(component).toMatchSnapshot();
   });

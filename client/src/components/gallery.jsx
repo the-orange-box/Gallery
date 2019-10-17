@@ -12,7 +12,7 @@ class Gallery extends React.Component {
       <div className="gallerycontainer">
         {
           this.props.imagelist.map((image, index)=>{
-          return index<5 ? <div key={image._id} onClick={this.props.handleClick}className="galleryitem"><img className="galleryImage" src={image.image}></img></div> : null
+          return index<5 ? <div key={index} onClick={this.props.handleClick}className="galleryitem"><img className="galleryImage" src={image.image}></img></div> : null
         })}
       </div>
     )
