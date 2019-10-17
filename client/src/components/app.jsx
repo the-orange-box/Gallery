@@ -44,7 +44,7 @@ class App extends React.Component {
     return (
       <div>
         {this.state.carousel ? <Carousel currentImage={this.state.currentImage} handleClick={this.handleClick} imagelist={this.state.imagelist}/> : null}
-        <Gallery handleClick={this.handleClick} imagelist={this.state.imagelist}/>
+        <Gallery handleClick={this.handleClick} imagelist={this.state.imagelist.slice(0,5)}/>
       </div>
     )
   }

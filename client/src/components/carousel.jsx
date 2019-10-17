@@ -65,8 +65,10 @@ class Carousel extends React.Component {
       } else if (currentIndex > (imagelist.length - 1)) {
         currentIndex = currentIndex % imagelist.length;
       }
-      miniGalleryImages.push(this.props.imagelist[currentIndex]);
+      miniGalleryImages.push(currentIndex);
     }
+
+    console.log(this.state.currentImage);
 
     return (
       <div className="carousel-container">
@@ -79,8 +81,8 @@ class Carousel extends React.Component {
         <div className="side-panel">
           <div className="mini-gallery">
             {
-              miniGalleryImages.map((image, index)=>{
-                return <div style={(index===this.state.currentImage) ? currentMiniGalleryImageCss : null} key={index} className="mini-gallery-item"><img src={image.image}></img></div>
+              miniGalleryImages.map((imageIndex)=>{
+                return <div style={(imageIndex===this.state.currentImage) ? currentMiniGalleryImageCss : null} test={imageIndex} key={imageIndex} className="mini-gallery-item"><img src={this.props.imagelist[imageIndex].image}></img></div>
               })
             }
           </div>
