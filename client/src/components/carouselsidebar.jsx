@@ -9,14 +9,15 @@ class CarouselSidebar extends React.Component {
   render() {
     console.log(this.props.currentImage);
     const currentMiniGalleryImageCss = {
-      border: 'solid 2px #484848'
+      border: 'solid 2px #414141',
+      opacity: 1
     };
 
     let miniGalleryImages = [];
     let imagelist = this.props.imagelist;
     let numberofimages = 5 < imagelist.length ? 5 : 3; //odd
     // determine which images to display
-    for (let i = -(Math.floor(numberofimages/2)); i <= Math.floor(numberofimages/2); i++) {
+    for (let i = -(Math.floor(numberofimages/4)); i <= Math.floor(numberofimages/2); i++) {
       let currentIndex = this.props.currentImage + i;
       if (currentIndex < 0) {
         currentIndex = currentIndex + imagelist.length;

@@ -1,6 +1,6 @@
 .main-image-container {
   display: inline-block;
-  width: 70%;
+  width: 79%;
   height: 100%;
 }
 
@@ -11,7 +11,7 @@
     width: auto;
     vertical-align: top;
     top: 50%;
-    padding: 0 3%;
+    margin: 0 5%;
 }
 
 .left-arrow svg, .right-arrow svg {
@@ -24,9 +24,10 @@
   display: inline-block;
   position: relative;
   height: 75%;
-  max-width: 80%;
+  max-width: 67%;
   top: 50%;
   transform: translateY(-50%);
+  padding: 0 4%;
 }
 
 @keyframes fadeIn {
@@ -37,6 +38,6 @@
 .main-image img {
   height: 100%;
   max-width: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
   animation: fadeIn 0.3s both linear;
 }
