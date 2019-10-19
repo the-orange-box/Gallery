@@ -1,10 +1,55 @@
 .gallerycontainer {
   display: grid;
+  position: relative;
   height: 300px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto auto;
   overflow: hidden;
   /* border:1px solid transparent; */
+}
+
+.gallery-button {
+  background: white;
+  padding: 9px 15px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: gray 0 2px 3px;
+  cursor: pointer;
+}
+
+.gallery-shareandsave {
+  position: absolute;
+  right: 0;
+  top: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-shareandsave svg {
+  padding-right: 11px;
+  padding-bottom: 1px;
+}
+
+.gallery-button.gallery-save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 25px;
+}
+
+.gallery-button.gallery-share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.gallery-button.gallery-view-button {
+  position: absolute;
+  right: 0;
+  bottom: 7%;
+  margin-right: 25px;
 }
 
 .gallerycontainer img {

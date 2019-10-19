@@ -30,10 +30,15 @@ class App extends React.Component {
   }
 
   handleClick(event) {
-    let link = event.target.src;
-    let currentImage = this.state.imagelist.findIndex((image)=>{
-      return image.image === link;
-    });
+    let currentImage;
+    if (event.target.src) {
+      let link = event.target.src;
+      currentImage = this.state.imagelist.findIndex((image)=>{
+        return image.image === link;
+      });
+    } else {
+      currentImage = 0;
+    }
     this.setState({
       carousel: !this.state.carousel,
       currentImage
