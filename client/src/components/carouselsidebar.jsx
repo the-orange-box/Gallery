@@ -7,32 +7,21 @@ class CarouselSidebar extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentImage);
-    const currentMiniGalleryImageCss = {
+    let currentMiniGalleryImageCss = {
       border: 'solid 2px #414141',
       opacity: 1
     };
 
-    let miniGalleryImages = [];
-    let imagelist = this.props.imagelist;
-    let numberofimages = 5 < imagelist.length ? 5 : 3; //odd
-    // determine which images to display
-    for (let i = -(Math.floor(numberofimages/4)); i <= Math.floor(numberofimages/2); i++) {
-      let currentIndex = this.props.currentImage + i;
-      if (currentIndex < 0) {
-        currentIndex = currentIndex + imagelist.length;
-      } else if (currentIndex > (imagelist.length - 1)) {
-        currentIndex = currentIndex % imagelist.length;
-      }
-      miniGalleryImages.push(currentIndex);
-    }
+    let miniGalleryTranslate = {
+      transform: `translateX(${-(-10 + 48*this.props.currentImage)}px)`
+    };
 
     return (
       <div className="side-panel">
         <div className="mini-gallery">
           {
-            miniGalleryImages.map((imageIndex) => {
-              return <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={(imageIndex === this.props.currentImage) ? currentMiniGalleryImageCss : null} test={imageIndex} key={imageIndex} className="mini-gallery-item"><img src={this.props.imagelist[imageIndex].image}></img></div>
+            this.props.imagelist.map((image, imageIndex) => {
+              return <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={{...miniGalleryTranslate, ...((imageIndex === this.props.currentImage) ? currentMiniGalleryImageCss : null)}} key={imageIndex} className="mini-gallery-item"><img src={image.image}></img></div>
             })
           }
         </div>
