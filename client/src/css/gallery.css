@@ -29,6 +29,11 @@
 .gallery-shareandsave svg {
   padding-right: 11px;
   padding-bottom: 1px;
+  height: 15px;
+  width: 15px;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .gallery-button.gallery-save-button {

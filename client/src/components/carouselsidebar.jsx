@@ -13,7 +13,7 @@ class CarouselSidebar extends React.Component {
     };
 
     let miniGalleryTranslate = {
-      transform: `translateX(${-(-10 + 48*this.props.currentImage)}px)`
+      transform: `translateX(${10 + -48 * this.props.currentImage}px)`
     };
 
     return (
@@ -21,7 +21,11 @@ class CarouselSidebar extends React.Component {
         <div className="mini-gallery">
           {
             this.props.imagelist.map((image, imageIndex) => {
-              return <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={{...miniGalleryTranslate, ...((imageIndex === this.props.currentImage) ? currentMiniGalleryImageCss : null)}} key={imageIndex} className="mini-gallery-item"><img src={image.image}></img></div>
+              return (
+              <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={{...miniGalleryTranslate, ...((imageIndex === this.props.currentImage) && currentMiniGalleryImageCss)}} key={imageIndex} className="mini-gallery-item">
+                <img src={image.image}></img>
+              </div>
+              )
             })
           }
         </div>

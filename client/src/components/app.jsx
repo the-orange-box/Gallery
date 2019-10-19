@@ -3,6 +3,9 @@ import axios from 'axios';
 import Gallery from './gallery';
 import Carousel from './carousel';
 import '../css/app.css';
+import ShareModal from './gallerysharemodal.jsx';
+import SaveModal from './gallerysavemodal.jsx';
+import { valueToNode } from '@babel/types';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,46 +13,61 @@ class App extends React.Component {
 
     this.state = {
       imagelist: [],
-      carousel: false,
+      modal: 0, //0: none, 1: carousel, 2: sharemodal, 3: savemodal
       clickedImage: 0
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleModalTrigger = this.handleModalTrigger.bind(this);
   }
 
   componentDidMount() {
     let pathname = window.location.pathname;
-    axios.get(`http://localhost:3000/gallery${pathname}`).then((response)=>{
+    axios.get(`http://localhost:3000/gallery${pathname}`).then((response) => {
       console.log(response.data);
       this.setState({
         imagelist: response.data
       });
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     });
   }
 
-  handleClick(event) {
-    let currentImage;
-    if (event.target.src) {
-      let link = event.target.src;
-      currentImage = this.state.imagelist.findIndex((image)=>{
-        return image.image === link;
+  handleModalTrigger(event) {
+    let modal;
+    let currentImage = 0;
+    console.log(event.target.classList);
+    if (this.state.modal) { //reset if in a modal
+      modal = 0;
+    } else if (event.target.src) { //if target has a src, then it is an image
+      modal = 1;
+      currentImage = this.state.imagelist.findIndex((image) => {
+        return image.image === event.target.src;
       });
-    } else {
-      currentImage = 0;
+    } else if (event.target.classList.contains('gallery-share-button') || event.target.classList.contains('share-svg')) {
+      modal = 2;
+    } else if (event.target.classList.contains('gallery-save-button')) {
+      modal = 3;
+    } else if (event.target.classList.contains('gallery-view-button')){
+      modal = 1;
     }
+    console.log(modal);
     this.setState({
-      carousel: !this.state.carousel,
+      modal,
       currentImage
     });
   }
 
   render() {
+    let modal = [
+      null,
+      <Carousel currentImage={this.state.currentImage} handleClick={this.handleModalTrigger} imagelist={this.state.imagelist} />,
+      <ShareModal handleClick={this.handleModalTrigger}/>,
+      <SaveModal handleClick={this.handleModalTrigger}/>
+    ];
     return (
       <div>
-        {this.state.carousel ? <Carousel currentImage={this.state.currentImage} handleClick={this.handleClick} imagelist={this.state.imagelist}/> : null}
-        <Gallery handleClick={this.handleClick} imagelist={this.state.imagelist.slice(0,5)}/>
+        {modal[this.state.modal]}
+        <Gallery handleClick={this.handleModalTrigger} imagelist={this.state.imagelist.slice(0, 5)} />
       </div>
     )
   }
