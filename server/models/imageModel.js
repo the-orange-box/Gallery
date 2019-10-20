@@ -6,6 +6,10 @@ module.exports = {
     console.log('getAll Model');
     db.galleryModel.find({}).exec(callback);
   },
+  getByPlace: function(params, callback) {
+    console.log('get image by placeid');
+    db.galleryModel.find({placeID: params}).exec(callback);
+  },
   put: function() {
 
   },

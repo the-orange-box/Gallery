@@ -1,0 +1,43 @@
+.main-image-container {
+  display: inline-block;
+  width: 79%;
+  height: 100%;
+}
+
+.left-arrow, .right-arrow {
+  display: inline-block;
+    position: relative;
+    height: 100%;
+    width: auto;
+    vertical-align: top;
+    top: 50%;
+    margin: 0 5%;
+}
+
+.left-arrow svg, .right-arrow svg {
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.main-image {
+  display: inline-block;
+  position: relative;
+  height: 75%;
+  max-width: 67%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 4%;
+}
+
+@keyframes fadeIn {
+  from    { opacity: 0; }
+  to      { opacity: 1; }
+}
+
+.main-image img {
+  height: 100%;
+  max-width: 100%;
+  border-radius: 20px;
+  animation: fadeIn 0.3s both linear;
+}

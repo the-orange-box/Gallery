@@ -1,0 +1,88 @@
+.save-modal-container {
+  position: absolute;
+  background-color: white;
+  width: 40%;
+  left: 50%;
+  margin: 5% auto;
+  padding: 30px;
+  transform: translateX(-50%);
+}
+
+.save-modal-container svg {
+  height: 18px;
+  width: 18px;
+  display: block;
+  padding-right: 10px;
+}
+
+.save-modal-container .gallery-button {
+  width: 100%;
+  margin: 2% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5%;
+  font-weight: bold;
+  box-shadow: none;
+  font-size: 1em;
+}
+
+.gallery-button.facebook-button {
+  background-color: rgb(69, 104, 178);
+  color: white;
+}
+
+.gallery-button.facebook-button svg {
+  fill: white;
+}
+
+.gallery-button.google-button {
+  border: solid 2px rgb(118, 118, 118);  
+  color: rgb(72, 72, 72);
+}
+
+.gallery-button.email-button {
+  background-color: rgb(255, 90, 95);
+  color: white;
+  margin-bottom: 3%;
+}
+
+.save-modal-or {
+  position: relative;
+  margin: 1% auto;
+  text-align: center;
+}
+
+.save-modal-or:before {
+  position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    border-top: 1px solid rgb(235, 235, 235);
+    width: 43%;
+  /* position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "";
+  border-top: .3rem solid rgb(235, 235, 235);
+  width: 100%;
+  margin: 0 1rem;
+  transform: translateY(-1rem); */
+}
+
+.save-modal-or:after {
+  position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    border-top: 1px solid rgb(235, 235, 235);
+    width: 43%;
+}
+
+.save-modal-login {
+  padding: 5% 0;
+  text-align: center;
+  border-top: solid 1px rgb(235, 235, 235);
+}
