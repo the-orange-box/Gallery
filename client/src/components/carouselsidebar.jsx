@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/carouselsidebar.css';
+import styles from '../css/carouselsidebar.module.css';
 
 class CarouselSidebar extends React.Component {
   constructor(props) {
@@ -17,19 +17,19 @@ class CarouselSidebar extends React.Component {
     };
 
     return (
-      <div className="side-panel">
-        <div className="mini-gallery">
+      <div className={styles["side-panel"]}>
+        <div className={styles["mini-gallery"]}>
           {
             this.props.imagelist.map((image, imageIndex) => {
               return (
-              <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={{...miniGalleryTranslate, ...((imageIndex === this.props.currentImage) && currentMiniGalleryImageCss)}} key={imageIndex} className="mini-gallery-item">
+              <div onClick={(event)=>{this.props.handleImageClick(event, imageIndex)}} style={{...miniGalleryTranslate, ...((imageIndex === this.props.currentImage) && currentMiniGalleryImageCss)}} key={imageIndex} className={styles["mini-gallery-item"]}>
                 <img src={image.image}></img>
               </div>
               )
             })
           }
         </div>
-        <div className="caption">
+        <div className={styles["caption"]}>
           <p>{this.props.currentImage + 1}/{this.props.imagelist.length}</p>
           <p>{this.props.imagelist[this.props.currentImage].caption}</p>
           <p>{this.props.imagelist[this.props.currentImage].verified ? 'Photo Verified by Airbnb' : null}</p>
