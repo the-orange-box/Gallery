@@ -2,7 +2,11 @@ const express = require('express');
 const imageController = require('./controllers/imageController.js');
 const app = express();
 const path = require('path');
-const port = 3000;
+const port = 3001;
+const cors = require('cors');
+
+app.use(cors());
+app.options('*', cors());
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 app.get('/gallery', imageController.getImages);
