@@ -21,7 +21,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let pathname = window.location.pathname;
-    axios.get(`http://localhost:3000/gallery${pathname}`).then((response) => {
+    axios.get(`http://localhost:3001/gallery${pathname}`).then((response) => {
       console.log(response.data);
       this.setState({
         imagelist: response.data
