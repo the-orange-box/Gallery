@@ -34,6 +34,7 @@
   display: block;
   overflow: visible;
   pointer-events: none;
+  
 }
 
 .gallery-button.gallery-save-button {

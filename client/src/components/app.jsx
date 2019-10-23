@@ -5,7 +5,6 @@ import Carousel from './carousel';
 import '../css/app.css';
 import ShareModal from './gallerysharemodal.jsx';
 import SaveModal from './gallerysavemodal.jsx';
-import { valueToNode } from '@babel/types';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,9 +31,10 @@ class App extends React.Component {
     });
   }
 
-  handleModalTrigger(event) {
+  handleModalTrigger(event, modalnumber) {
     let modal;
     let currentImage = 0;
+    console.log(modalnumber);
     console.log(event.target.classList);
     if (this.state.modal) { //reset if in a modal
       modal = 0;
@@ -43,11 +43,11 @@ class App extends React.Component {
       currentImage = this.state.imagelist.findIndex((image) => {
         return image.image === event.target.src;
       });
-    } else if (event.target.classList.contains('gallery-share-button') || event.target.classList.contains('share-svg')) {
+    } else if (modalnumber === 2) {
       modal = 2;
-    } else if (event.target.classList.contains('gallery-save-button')) {
+    } else if (modalnumber === 3) {
       modal = 3;
-    } else if (event.target.classList.contains('gallery-view-button')){
+    } else if (modalnumber === 1){
       modal = 1;
     }
     console.log(modal);
