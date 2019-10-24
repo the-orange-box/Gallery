@@ -17,9 +17,9 @@ app.use(function(req, res, next) {
 app.use('/:placeid', express.static(path.resolve(__dirname, '../public')));
 app.get('/gallery', imageController.getImages);
 app.get('/gallery/:placeid', imageController.getImage);
-// app.get('/*', (req, res, next)=>{
-//   res.sendFile(path.resolve(__dirname, '../public/index.html'));
-// });
+app.get('/*', (req, res, next)=>{
+  res.sendFile(path.resolve(__dirname, '../public/index.html'));
+});
 
 app.listen(port, ()=>{
   console.log('listening on port: ' + port);

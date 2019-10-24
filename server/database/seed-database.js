@@ -7,11 +7,11 @@ var seedDatabase = function (urls) {
   let imageData;
   var promises = [];
 
-  for ( var i = 0; i < urls.length; i++) {
+  for ( var i = 1; i <= 600; i++) {
     // generate random image objects from input url array and listing ids
-    imageData = generateRandomImage(i % 2, urls[i]);
+    imageData = generateRandomImage(i % 100, urls[i % urls.length]);
     // find and update image objects based on image link url; todo: update search criteria
-    promises.push(db.galleryModel.findOneAndUpdate({image: imageData.image}, imageData, { new: true, upsert: true }, (err, result) => {
+    promises.push(db.galleryModel.findOneAndUpdate(imageData, imageData, { new: true, upsert: true }, (err, result) => {
       if (err) {
         console.log(err);
       } else {
