@@ -30,7 +30,7 @@
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "jest-transform-css": "^2.0.0",
-    "mocha": "^6.2.1",
+    "mocha": "^10.2.0",
     "nodemon": "^1.19.3",
     "react-test-renderer": "^16.10.2",
     "style-loader": "^1.0.0",
